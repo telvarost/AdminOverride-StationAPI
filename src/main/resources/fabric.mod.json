@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "id": "adminoverride",
+  "version": "${version}",
+
+  "name": "AdminOverride",
+  "description": "Requested features for administrators of servers.",
+  "authors": [
+    "Telvarost"
+  ],
+  "contact": {
+    "issues": "https://github.com/telvarost/AdminOverride-StationAPI/issues",
+    "homepage": "https://github.com/telvarost/AdminOverride-StationAPI/",
+    "sources": "https://github.com/telvarost/AdminOverride-StationAPI/"
+  },
+
+  "license": "MIT",
+  "icon": "assets/adminoverride/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "stationapi:event_bus": [
+    ],
+    "stationapi:event_bus_client": [
+    ],
+    "stationapi:event_bus_server": [
+    ],
+    "gcapi": [
+      "com.github.telvarost.adminoverride.Config"
+    ]
+  },
+  "mixins": [
+    "adminoverride.mixins.json"
+  ],
+
+  "depends": {
+    "minecraft": "1.0.0-beta.7.3"
+  }
+}
