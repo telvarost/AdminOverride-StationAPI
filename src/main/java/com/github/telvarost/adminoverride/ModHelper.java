@@ -11,7 +11,6 @@ public class ModHelper {
     public static final Namespace NAMESPACE = Null.get();
 
     public static class ModHelperFields {
-        public static Integer sprintStatus = 0;
         public static Integer flightStatus = 0;
     }
 }

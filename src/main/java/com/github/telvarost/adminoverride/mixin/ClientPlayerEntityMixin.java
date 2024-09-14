@@ -1,11 +1,13 @@
 package com.github.telvarost.adminoverride.mixin;
 
 import com.github.telvarost.adminoverride.ModHelper;
+import com.github.telvarost.adminoverride.events.init.KeyBindingListener;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.util.Session;
 import net.minecraft.entity.player.ClientPlayerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
+import org.lwjgl.input.Keyboard;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -48,7 +50,7 @@ public abstract class ClientPlayerEntityMixin extends PlayerEntity {
             //this.y -= 1;
         }
 
-        if (1 == ModHelper.ModHelperFields.sprintStatus) {
+        if (Keyboard.isKeyDown(KeyBindingListener.sprintKey.code)) {
             super.move(dx * 2, dy, dz * 2);
         }
     }
