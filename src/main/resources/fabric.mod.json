@@ -22,6 +22,8 @@
     "stationapi:event_bus": [
     ],
     "stationapi:event_bus_client": [
+      "com.github.telvarost.adminoverride.events.init.KeyBindingListener",
+      "com.github.telvarost.adminoverride.events.KeyPressedListener"
     ],
     "stationapi:event_bus_server": [
     ],
