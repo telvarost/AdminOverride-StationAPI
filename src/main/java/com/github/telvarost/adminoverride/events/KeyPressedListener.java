@@ -21,9 +21,9 @@ public class KeyPressedListener {
             // Hotbar Slots
             if (minecraft.currentScreen == null) {
                 if (Keyboard.isKeyDown(KeyBindingListener.toggleSprint.code)) {
-                    minecraft.player.inventory.selectedSlot = 0;
+                    ModHelper.ModHelperFields.sprintStatus = (ModHelper.ModHelperFields.sprintStatus + 1) % 2;
                 } else if (Keyboard.isKeyDown(KeyBindingListener.toggleFlight.code)) {
-                    minecraft.player.inventory.selectedSlot = 1;
+                    ModHelper.ModHelperFields.flightStatus = (ModHelper.ModHelperFields.flightStatus + 1) % 2;
                 }
             }
         }

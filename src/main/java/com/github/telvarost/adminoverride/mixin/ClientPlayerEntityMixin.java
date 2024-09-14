@@ -21,13 +21,35 @@ public abstract class ClientPlayerEntityMixin extends PlayerEntity {
 
     @Inject(
             method = "move",
+            at = @At("HEAD"),
+            cancellable = true
+    )
+    public void moveFlight(double dx, double dy, double dz, CallbackInfo ci) {
+        if (1 == ModHelper.ModHelperFields.flightStatus) {
+            super.move(dx, 1, dz);
+            //this.y += 1;
+        } else if (2 == ModHelper.ModHelperFields.flightStatus) {
+            //super.move(dx, -1, dz);
+            //this.y -= 1;
+        }
+    }
+
+    @Inject(
+            method = "move",
             at = @At("TAIL"),
             cancellable = true
     )
-    public void tick(double dx, double dy, double dz, CallbackInfo ci) {
-        if (1 == this.inventory.selectedSlot)
-        {
+    public void moveSprint(double dx, double dy, double dz, CallbackInfo ci) {
+        if (1 == ModHelper.ModHelperFields.flightStatus) {
             super.move(dx, 1, dz);
+            //this.y += 1;
+        } else if (2 == ModHelper.ModHelperFields.flightStatus) {
+            //super.move(dx, -1, dz);
+            //this.y -= 1;
+        }
+
+        if (1 == ModHelper.ModHelperFields.sprintStatus) {
+            super.move(dx * 2, dy, dz * 2);
         }
     }
 }

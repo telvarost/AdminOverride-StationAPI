@@ -4,14 +4,11 @@
   "package": "com.github.telvarost.adminoverride.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "WorldAccessor",
-    "WorldMixin"
   ],
   "server": [
   ],
   "client": [
-    "ClientPlayerEntityMixin",
-    "InGameHudAccessor"
+    "ClientPlayerEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1
