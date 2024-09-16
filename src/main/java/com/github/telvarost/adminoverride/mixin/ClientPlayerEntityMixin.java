@@ -30,31 +30,22 @@ public abstract class ClientPlayerEntityMixin extends PlayerEntity {
     )
     public void moveFlight(double dx, double dy, double dz, CallbackInfo ci) {
         if (ModHelper.ModHelperFields.IsFlying) {
-            this.onGround = true;
+            //this.onGround = true;
 
             if (Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
-                super.move(0, Config.config.flightSpeed, 0);
+                super.move(dx, (Config.config.flightSpeed / 2), dz);
+            } else if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
+                super.move(dx, -(Config.config.flightSpeed / 2), dz);
+            } else if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
+                super.move(dx * Config.config.flightSpeed, 0, dz * Config.config.flightSpeed);
+            } else if (Keyboard.isKeyDown(Keyboard.KEY_A)) {
+                super.move(dx * Config.config.flightSpeed, 0, dz * Config.config.flightSpeed);
+            } else if (Keyboard.isKeyDown(Keyboard.KEY_S)) {
+                super.move(dx * Config.config.flightSpeed, 0, dz * Config.config.flightSpeed);
+            } else if (Keyboard.isKeyDown(Keyboard.KEY_D)) {
+                super.move(dx * Config.config.flightSpeed, 0, dz * Config.config.flightSpeed);
             }
 
-            if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
-                super.move(0, -Config.config.flightSpeed, 0);
-            }
-
-            if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
-                super.move(Config.config.flightSpeed, 0, 0);
-            }
-
-            if (Keyboard.isKeyDown(Keyboard.KEY_A)) {
-                super.move(0, 0, -Config.config.flightSpeed);
-            }
-
-            if (Keyboard.isKeyDown(Keyboard.KEY_S)) {
-                super.move(-Config.config.flightSpeed, 0, 0);
-            }
-
-            if (Keyboard.isKeyDown(Keyboard.KEY_D)) {
-                super.move(0, 0, Config.config.flightSpeed);
-            }
             ci.cancel();
         }
     }

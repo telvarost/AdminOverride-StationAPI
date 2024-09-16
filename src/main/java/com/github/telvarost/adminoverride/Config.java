@@ -12,7 +12,7 @@ public class Config {
 
         @ConfigName("Flight Speed")
         @MultiplayerSynced
-        public Float flightSpeed = 1.0F;
+        public Float flightSpeed = 2.0F;
 
         @ConfigName("Sprint Speed")
         @MultiplayerSynced
