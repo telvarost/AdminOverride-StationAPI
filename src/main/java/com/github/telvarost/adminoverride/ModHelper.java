@@ -12,5 +12,6 @@ public class ModHelper {
 
     public static class ModHelperFields {
         public static Boolean IsFlying = false;
+        public static Boolean FlightRelease = false;
     }
 }

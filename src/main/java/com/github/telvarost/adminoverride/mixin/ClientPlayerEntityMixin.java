@@ -30,23 +30,31 @@ public abstract class ClientPlayerEntityMixin extends PlayerEntity {
     )
     public void moveFlight(double dx, double dy, double dz, CallbackInfo ci) {
         if (ModHelper.ModHelperFields.IsFlying) {
-            //this.onGround = true;
+            ModHelper.ModHelperFields.FlightRelease = true;
 
-            if (Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
-                super.move(dx, (Config.config.flightSpeed / 2), dz);
-            } else if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
-                super.move(dx, -(Config.config.flightSpeed / 2), dz);
-            } else if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
+            if (Keyboard.isKeyDown(KeyBindingListener.flyUp.code)) {
+                super.move(dx, (Config.config.flightSpeed / 3), dz);
+                if (Keyboard.isKeyDown(KeyBindingListener.sprintKey.code)) {
+                    super.move(dx * Config.config.sprintSpeed, (Config.config.flightSpeed / 3), dz * Config.config.sprintSpeed);
+                }
+            } else if (Keyboard.isKeyDown(KeyBindingListener.flyDown.code)) {
+                super.move(dx, -(Config.config.flightSpeed / 3), dz);
+                if (Keyboard.isKeyDown(KeyBindingListener.sprintKey.code)) {
+                    super.move(dx * Config.config.sprintSpeed, -(Config.config.flightSpeed / 3), dz * Config.config.sprintSpeed);
+                }
+            } else if (Keyboard.isKeyDown(KeyBindingListener.sprintKey.code)) {
                 super.move(dx * Config.config.flightSpeed, 0, dz * Config.config.flightSpeed);
-            } else if (Keyboard.isKeyDown(Keyboard.KEY_A)) {
-                super.move(dx * Config.config.flightSpeed, 0, dz * Config.config.flightSpeed);
-            } else if (Keyboard.isKeyDown(Keyboard.KEY_S)) {
-                super.move(dx * Config.config.flightSpeed, 0, dz * Config.config.flightSpeed);
-            } else if (Keyboard.isKeyDown(Keyboard.KEY_D)) {
+                super.move(dx * Config.config.sprintSpeed, 0, dz * Config.config.sprintSpeed);
+            } else {
                 super.move(dx * Config.config.flightSpeed, 0, dz * Config.config.flightSpeed);
             }
 
             ci.cancel();
+        }
+
+        if (true == ModHelper.ModHelperFields.FlightRelease) {
+            this.velocityY = 0.0F;
+            ModHelper.ModHelperFields.FlightRelease = false;
         }
     }
 
