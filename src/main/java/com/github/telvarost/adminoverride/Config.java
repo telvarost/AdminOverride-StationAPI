@@ -10,10 +10,8 @@ public class Config {
 
     public static class ConfigFields {
 
-        @ConfigName("Test Config")
-        @Comment("Does nothing.")
+        @ConfigName("Sprint Speed")
         @MultiplayerSynced
-        @ValueOnVanillaServer(booleanValue = TriBoolean.FALSE)
-        public Boolean testConfig = true;
+        public Float sprintSpeed = 1.0F;
     }
 }

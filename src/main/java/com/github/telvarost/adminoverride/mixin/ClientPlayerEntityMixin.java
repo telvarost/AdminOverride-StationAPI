@@ -1,5 +1,6 @@
 package com.github.telvarost.adminoverride.mixin;
 
+import com.github.telvarost.adminoverride.Config;
 import com.github.telvarost.adminoverride.ModHelper;
 import com.github.telvarost.adminoverride.events.init.KeyBindingListener;
 import net.minecraft.client.Minecraft;
@@ -9,7 +10,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
 import org.lwjgl.input.Keyboard;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -51,7 +51,7 @@ public abstract class ClientPlayerEntityMixin extends PlayerEntity {
         }
 
         if (Keyboard.isKeyDown(KeyBindingListener.sprintKey.code)) {
-            super.move(dx * 2, dy, dz * 2);
+            super.move(dx * Config.config.sprintSpeed, dy, dz * Config.config.sprintSpeed);
         }
     }
 }
