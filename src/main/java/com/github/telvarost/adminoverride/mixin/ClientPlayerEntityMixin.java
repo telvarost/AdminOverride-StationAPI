@@ -33,27 +33,27 @@ public abstract class ClientPlayerEntityMixin extends PlayerEntity {
             this.onGround = true;
 
             if (Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
-                super.move(dx, 1, dz);
+                super.move(0, Config.config.flightSpeed, 0);
             }
 
             if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
-                super.move(dx, -1, dz);
+                super.move(0, -Config.config.flightSpeed, 0);
             }
 
             if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
-                super.move(1, dy, dz);
+                super.move(Config.config.flightSpeed, 0, 0);
             }
 
             if (Keyboard.isKeyDown(Keyboard.KEY_A)) {
-                super.move(dx, dy, -1);
+                super.move(0, 0, -Config.config.flightSpeed);
             }
 
             if (Keyboard.isKeyDown(Keyboard.KEY_S)) {
-                super.move(-1, dy, dz);
+                super.move(-Config.config.flightSpeed, 0, 0);
             }
 
             if (Keyboard.isKeyDown(Keyboard.KEY_D)) {
-                super.move(dx, dy, 1);
+                super.move(0, 0, Config.config.flightSpeed);
             }
             ci.cancel();
         }

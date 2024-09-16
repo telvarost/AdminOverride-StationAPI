@@ -10,6 +10,10 @@ public class Config {
 
     public static class ConfigFields {
 
+        @ConfigName("Flight Speed")
+        @MultiplayerSynced
+        public Float flightSpeed = 1.0F;
+
         @ConfigName("Sprint Speed")
         @MultiplayerSynced
         public Float sprintSpeed = 1.0F;
