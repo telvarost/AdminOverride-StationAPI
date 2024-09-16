@@ -11,6 +11,6 @@ public class ModHelper {
     public static final Namespace NAMESPACE = Null.get();
 
     public static class ModHelperFields {
-        public static Integer flightStatus = 0;
+        public static Boolean IsFlying = false;
     }
 }

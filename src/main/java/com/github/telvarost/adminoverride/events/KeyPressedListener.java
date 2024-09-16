@@ -18,10 +18,9 @@ public class KeyPressedListener {
         }
 
         if (Keyboard.getEventKeyState() && minecraft.currentScreen == null) {
-            // Hotbar Slots
             if (minecraft.currentScreen == null) {
                 if (Keyboard.isKeyDown(KeyBindingListener.toggleFlight.code)) {
-                    ModHelper.ModHelperFields.flightStatus = (ModHelper.ModHelperFields.flightStatus + 1) % 2;
+                    ModHelper.ModHelperFields.IsFlying = !ModHelper.ModHelperFields.IsFlying;
                 }
             }
         }

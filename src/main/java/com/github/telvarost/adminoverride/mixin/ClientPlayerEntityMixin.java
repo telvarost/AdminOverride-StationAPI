@@ -3,7 +3,9 @@ package com.github.telvarost.adminoverride.mixin;
 import com.github.telvarost.adminoverride.Config;
 import com.github.telvarost.adminoverride.ModHelper;
 import com.github.telvarost.adminoverride.events.init.KeyBindingListener;
+import net.glasslauncher.hmifabric.KeyBindings;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.Session;
 import net.minecraft.entity.player.ClientPlayerEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -27,12 +29,33 @@ public abstract class ClientPlayerEntityMixin extends PlayerEntity {
             cancellable = true
     )
     public void moveFlight(double dx, double dy, double dz, CallbackInfo ci) {
-        if (1 == ModHelper.ModHelperFields.flightStatus) {
-            super.move(dx, 1, dz);
-            //this.y += 1;
-        } else if (2 == ModHelper.ModHelperFields.flightStatus) {
-            //super.move(dx, -1, dz);
-            //this.y -= 1;
+        if (ModHelper.ModHelperFields.IsFlying) {
+            this.onGround = true;
+
+            if (Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
+                super.move(dx, 1, dz);
+            }
+
+            if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
+                super.move(dx, -1, dz);
+            }
+
+            if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
+                super.move(1, dy, dz);
+            }
+
+            if (Keyboard.isKeyDown(Keyboard.KEY_A)) {
+                super.move(dx, dy, -1);
+            }
+
+            if (Keyboard.isKeyDown(Keyboard.KEY_S)) {
+                super.move(-1, dy, dz);
+            }
+
+            if (Keyboard.isKeyDown(Keyboard.KEY_D)) {
+                super.move(dx, dy, 1);
+            }
+            ci.cancel();
         }
     }
 
@@ -42,14 +65,6 @@ public abstract class ClientPlayerEntityMixin extends PlayerEntity {
             cancellable = true
     )
     public void moveSprint(double dx, double dy, double dz, CallbackInfo ci) {
-        if (1 == ModHelper.ModHelperFields.flightStatus) {
-            super.move(dx, 1, dz);
-            //this.y += 1;
-        } else if (2 == ModHelper.ModHelperFields.flightStatus) {
-            //super.move(dx, -1, dz);
-            //this.y -= 1;
-        }
-
         if (Keyboard.isKeyDown(KeyBindingListener.sprintKey.code)) {
             super.move(dx * Config.config.sprintSpeed, dy, dz * Config.config.sprintSpeed);
         }
