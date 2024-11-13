@@ -1,21 +1,24 @@
 package com.github.telvarost.adminoverride;
 
-import blue.endless.jankson.Comment;
-import net.glasslauncher.mods.api.gcapi.api.*;
+import net.glasslauncher.mods.gcapi3.api.*;
 
 public class Config {
 
-    @GConfig(value = "config", visibleName = "AdminOverride")
+    @ConfigRoot(value = "config", visibleName = "AdminOverride")
     public static ConfigFields config = new ConfigFields();
 
     public static class ConfigFields {
 
-        @ConfigName("Flight Speed")
-        @MultiplayerSynced
+        @ConfigEntry(
+                name = "Flight Speed",
+                multiplayerSynced = true
+        )
         public Float flightSpeed = 2.0F;
 
-        @ConfigName("Sprint Speed")
-        @MultiplayerSynced
+        @ConfigEntry(
+                name = "Sprint Speed",
+                multiplayerSynced = true
+        )
         public Float sprintSpeed = 1.0F;
     }
 }
